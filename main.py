@@ -1,4 +1,23 @@
-# -- coding: utf-8 --
+print("=== BOT STARTING ===")
+
+import os
+from telegram.ext import Updater, CommandHandler
+
+TOKEN = os.getenv("transcription_arabic")
+
+def start(update, context):
+    update.message.reply_text("Бот запущен ✅")
+
+def main():
+    print("=== MAIN CALLED ===")
+    updater = Updater(TOKEN, use_context=True)
+    dp = updater.dispatcher
+    dp.add_handler(CommandHandler("start", start))
+    updater.start_polling()
+    updater.idle()
+
+if _name_ == "_main_":
+    main()# -- coding: utf-8 --
 """
 Telegram bot: Arabic transliteration + Tajweed rules
 Python 3.8+
@@ -180,5 +199,5 @@ def main():
     updater.idle()
 
 # ──────────────────────────────────────────────
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
